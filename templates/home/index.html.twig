@@ -1,0 +1,15 @@
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+	This friendly message is coming from:
+	{{ user.username }}
+	{{ user.id }}
+	{% if is_granted( 'ROLE_USER')%}
+		<p>you have the role user</p>
+	{% endif %}
+	{% for role in user.roles %}
+		{{role}}
+	{% endfor %}
+{% endblock %}

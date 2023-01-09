@@ -1,0 +1,64 @@
+{# templates/registration/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block header %}{% endblock %}
+{% block body %}
+	<div class="row justify-content-center auth-bg pt-5 m-0">
+
+		<div class="auth-card card col-lg-4 col-md-6 col-sm-10 h-75 border-0 mb-0">
+			<div class="card-body px-2">
+				<div class="card-header  h2 text-center bg-white mb-5 g-5">
+
+					Registration
+				</div>
+				{{ form_start(form) }}
+				<div class="d-inline-flex justify-content-between mb-4 w-100">
+					<div class="input-field mr-3" style="width: 47%;">
+						{{ form_widget(form.first_name,{'attr':{'class':'w-100','placeholder':'First name'}})}}
+						{{ form_label(form.first_name,'First name') }}
+					</div>
+					<div class="input-field ml-3 " style="width: 47%;">
+						{{ form_widget(form.last_name,{'attr':{'placeholder':'Last name'}})}}
+						{{ form_label(form.first_name,'Last name') }}
+					</div>
+				</div>
+				<div class="input-field mb-4">
+					{{ form_widget(form.email,{'attr':{'placeholder':'Email'}}) }}
+					{{ form_label(form.email,'Email') }}
+
+				</div>
+				<div class="input-field mb-4">
+					{{ form_widget(form.password.first,{'attr':{'placeholder':'Password'}}) }}
+					{{ form_label(form.password.first,'Password') }}
+
+				</div>
+				<div class="input-field mb-4">
+					{{ form_widget(form.password.second,{'attr':{'placeholder':'Confirm password'}}) }}
+					{{ form_label(form.password.second,'Confirm password') }}
+
+				</div>
+
+
+				<div class="text-center col-12">
+
+					<div class="">
+						{{ form_label(form.is_doctor) }}
+
+						{{ form_widget(form.is_doctor) }}
+					</div>
+					<button type="submit" class="btn btn-success ml-auto col-12">
+						Register
+					</button>
+					<p class="text-center mt-3 mb-0">Already have an account?
+						<a href="{{ path('app_login') }}">
+							Sign in
+						</a>
+					</p>
+
+				</div>
+				{{ form_end(form) }}
+
+			</div>
+		</div>
+
+	</div>
+{% endblock body %}

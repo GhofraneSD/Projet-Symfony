@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %} {% block title %}Post index {% endblock %}
+{%block body %}
+
+<div class="row mx-0 justify-content-center">
+  <div class="col-lg-6">
+    <ul>
+      {% for post in posts %}
+<div class="mt-2"></div>
+
+      <div class="card-body shadow rounded bg-white p-4">
+        
+        <div class="d-flex flex-start">
+          <img
+            class="rounded-circle shadow-1-strong me-3"
+            src="{{ gravatar(post.getAuthor().getEmail()) }}"
+            *
+            alt="avatar"
+            width="60"
+            height="60"
+          />
+          <div>
+            <h6 class="fw-bold mb-1">
+              {{ post.getAuthor().getFirstName() }}&nbsp
+              {{ post.getAuthor().getLastName() }}
+            </h6>
+            <div class="d-flex align-items-center mb-3">
+              <p class="mb-0">
+                {{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}
+                <span class="badge bg-primary">Pending</span>
+              </p>
+              <a href="{{ path('post_edit', { id: post.id }) }}" class="link-muted">
+                <i class="fas fa-pencil-alt ms-2"></i>
+              </a>
+              <a href="#!" class="link-muted">
+                <i class="fas fa-redo-alt ms-2"></i>
+              </a>
+              <a href="#!" class="link-muted">
+                <i class="fas fa-heart ms-2"></i>
+              </a>
+            </div>
+
+            <p class="mb-0">
+              <h5 class="card-title bg-secondary rounded-pill m-3 text-center text-white p-1">{{ post.title }}</h5>
+
+              {{ post.Body | raw}}
+              <div class="row">
+                <div class="col">
+                  {% for file in post.getListFiles() %}
+                  <img
+                    width="150"
+                    height="150"
+                    src="/uploads/{{ file.path }}"
+                    alt="{{ file.path }}"
+                  />
+                  {% endfor %}
+                </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr class="mx-3" />
+      <a class="text-center ml-auto btn-outline-secondary" href="{{ path('post_show', { id: post.id }) }}">see more</a>
+</div>
+      {% else %}
+      <p colspan="6">no records found</p>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Talk Space
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-2">
+			<div class="container">
+				<div class=" row justify-content-center  text-center text-secondary h4 mx-0 mb-5 py-2"></div>
+				<div class="row justify-content-center">
+					<div class="col-10 timeline-centered">
+
+						{% for user in users %}
+							{% if app.user.id != user.id %}
+								<article class="timeline-entry left-aligned user_talk {% if user.id == receiver.id %} current_talk_user {% endif %}" data-url="{{ path('talk_index_async', {'id': user.id }) }}">
+									<div class="timeline-entry-inner">
+										<time class="timeline-time">
+											<span>{{ user.firstName }}</span>
+											<span>{{ user.lastName }}</span>
+										</time>
+										<div class="timeline-icon bg-success">
+											<i class="entypo-feather"></i>
+										</div>
+									</div>
+								</article>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-10">
+
+			<div class="container">
+				<div class=" row justify-content-center  text-center text-secondary h4 mx-0 mb-5 py-2">
+					<div class="col-4 offset-1 m-0 p-0">
+						<hr/>
+					</div>
+					<div class="text-white bg-secondary rounded-pill col-4 py-1 px-0">
+						Talk Space
+
+					</div>
+
+					<div class="col-4 p-0 m-0">
+						<hr/>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-8 timeline-centered">
+						<div id="talk_list" data-url="{{ path('talk_index_async', {'id': receiver.id }) }}">
+							{% include 'talk/index_async.html.twig' with {
+                                'talks': talks,
+                                'receiver' : receiver
+                            } %}
+						</div>
+						{{ form_start(form , { 'attr': {'id': 'form_talk','class':''},'action': path('talk_new', {'id': receiver.id }) }) }}
+						<div class="col mt-2">
+							<div class="input-field border-0">
+								{{ form_widget(form.textMessage, {'attr' : {'placeholder': 'Put your message here',
+                                    'rows': '2', 'cols': '60','class':'border-0 px-3 rounded w-100'
+                                }}) }}
+							</div>
+							<div>
+								<div class="input-field  mt-1">
+									{{ form_widget(form.list_files,{'attr':{'class':'form-control form-control-sm shadow-sm py-1 '}}) }}
+									{{ form_widget(form.save,{'attr':{'class':'btn btn-success float-end mt-1',  'id' : 'submit_talk'}}) }}
+								</div>
+							</div>
+						</div>
+						{{ form_end(form) }}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<div class="col mt-2">
+	<div class="input-field border-0">
+		{{ form_widget(form.body, {'attr' : {'placeholder': 'Put your content here',
+			'rows': '2', 'cols': '60','class':'shadow-sm border-0 rounded px-3 w-100'
+		}}) }}
+	</div>
+	<div>
+		<div class="input-field  mt-0">
+			{{ form_widget(form.list_files,{'attr':{'class':'shadow-sm form-control form-control-sm py-1 '}}) }}
+			{{ form_widget(form.save,{'attr':{'class':'btn btn-success float-end mt-1'}}) }}
+		</div>
+	</div>
+</div>
+{{ form_end(form) }}

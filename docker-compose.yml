@@ -1,0 +1,20 @@
+version: '2.1'
+services:
+  utopia:
+    build: ./
+    container_name: "utopia"
+    volumes:
+      - './:/var/www/html/'
+    ports:
+      - "4445:80"
+    links:
+      - data_base
+
+  data_base:
+    image: postgres
+    container_name: "postgres"
+    environment:
+       POSTGRES_PASSWORD: mysecretpassword
+       PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data:/var/lib/postgresql/data

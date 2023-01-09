@@ -1,0 +1,6 @@
+# config/packages/mluex_gravatar.yml
+mluex_gravatar:
+  rating: g
+  style: "ol"
+  size: 80
+  default: mm

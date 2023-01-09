@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}New Post
+{% endblock %}
+{% block body %}
+	{{ form_start(form) }}
+
+	<div class="row m-0 justify-content-center mt-5">
+		<div class="col-lg-5 mt-5">
+
+			<div class="input-field mb-4">
+				{{ form_widget(form.title,{'attr':{'placeholder':'Title','class':'shadow-sm'}}) }}
+				{{ form_label(form.title, "Title") }}
+			</div>
+			<div class="input-field border-0">
+				{{ form_widget(form.body, {'attr' : {'placeholder': 'Put your content here',
+    'rows': '10', 'cols': '100'
+    }}) }}
+				<div>
+					<div class="input-field mt-4">
+						{{ form_widget(form.list_files,{'attr':{'class':'shadow-sm form-control form-control-sm py-1'}}) }}
+					</div>
+
+					<div class="text-center">
+						{{ form_row(form.save,{'attr':{'class':'btn btn-success mt-4 col-6'}}) }}
+					</div>
+				</div>
+			</div>
+
+			{{ form_end(form) }}
+		{% endblock %}

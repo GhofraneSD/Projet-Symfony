@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Talk{% endblock %}
+
+{% block body %}
+    <h1>Edit Talk</h1>
+
+    {{ include('talk/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('talk_index') }}">back to list</a>
+
+    {{ include('talk/_delete_form.html.twig') }}
+{% endblock %}

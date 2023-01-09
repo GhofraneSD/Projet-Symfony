@@ -1,0 +1,31 @@
+
+    {% for talk in talks %}
+        <article class="timeline-entry {% if talk.receiver.id != receiver.id %} left-aligned {% endif %}" >
+            <div class="timeline-entry-inner">
+                <time class="timeline-time" datetime="{{ talk.sendDate| date("m/d/Y H:i") }}">
+                    <span>{{ talk.sendDate| date("g:ia") }}</span>
+                    <span>{{ talk.sendDate| date("F jS") }}</span>
+                </time>
+
+                <div class="timeline-icon bg-success">
+                    <i class="entypo-feather"></i>
+                </div>
+                <div class="shadow timeline-label">
+                    <p>
+                        {{ talk.textMessage }}
+                        {% for file in talk.getListFiles() %}
+                            <br>
+                            <img
+                                    width="150"
+                                    height="150"
+                                    src="/uploads/{{ file.path }}"
+                                    alt="{{ file.path }}"
+                            />
+                        {% endfor %}
+                    </p>
+
+                </div>
+            </div>
+        </article>
+
+    {% endfor %}
